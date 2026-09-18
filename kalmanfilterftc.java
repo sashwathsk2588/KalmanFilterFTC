@@ -1,24 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-/**
- * A lightweight, dependency-free linear Kalman filter for fusing wheel/dead-wheel
- * odometry (high-rate, relative, drifts over time) with AprilTag vision poses
- * (low-rate, absolute, noisy) into a single robot pose estimate: (x, y, heading).
- *
- * Why a linear KF is enough here (no EKF):
- *   Your odometry subsystem already integrates encoder ticks + heading into a
- *   pose in FIELD coordinates every loop. So the change it reports each loop
- *   (dx, dy, dHeading) can just be ADDED to the state -- the transition is
- *   linear (F = I). All the nonlinear trig happens inside your odometry code,
- *   not inside this filter.
- *
- * Usage each loop:
- *   1. predict(dx, dy, dHeading)  -- every loop, from odometry's pose change
- *   2. update(x, y, heading, R)   -- whenever AprilTag sees a tag this loop
- *
- * Units: use whatever length unit you want (inches or meters) as long as you're
- * consistent everywhere (state, Q, R). Angles are radians internally.
- */
+
 public class KalmanPoseFilter {
 
     // ----- state: x, y, heading -----
