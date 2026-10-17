@@ -3,15 +3,13 @@ package org.firstinspires.ftc.teamcode;
 
 public class KalmanPoseFilter {
 
-    // ----- state: x, y, heading -----
+   
     private double x, y, heading;
 
-    // ----- 3x3 state covariance -----
+   
     private final double[][] P;
 
-    // ----- 3x3 process noise: uncertainty injected into the estimate every predict() call -----
-    // Tune this to reflect how much your odometry drifts per loop. Bigger Q = filter
-    // trusts AprilTag corrections more; smaller Q = filter trusts odometry more.
+    
     private final double[][] Q;
 
     public KalmanPoseFilter(double startX, double startY, double startHeadingRad,
@@ -30,9 +28,7 @@ public class KalmanPoseFilter {
                 diag(0.02, 0.02, Math.toRadians(0.3)));    // odometry drift injected per loop
     }
 
-    // ---------------------------------------------------------------------
-    // PREDICT: fold in an odometry pose change (already in field coordinates)
-    // ---------------------------------------------------------------------
+
     public synchronized void predict(double dx, double dy, double dHeadingRad) {
         x += dx;
         y += dy;
